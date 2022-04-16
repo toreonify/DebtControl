@@ -1,0 +1,15 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8"
+
+#: tmainform.caption
+msgid "DebtControl"
+msgstr ""
+
+#: tmainform.menuitem1.caption
+msgid "Settings"
+msgstr ""
+
+#: tmainform.menuitem2.caption
+msgid "MenuItem2"
+msgstr ""
+

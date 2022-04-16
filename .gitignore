@@ -1,3 +1,5 @@
 DebtControl
 lib/
 lib/*
+.DS_Store
+DebtControl.app/
