@@ -12,9 +12,73 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Language: en_US\n"
 
+#: tmainform.adddebtor.caption
+msgid "AddDebtor"
+msgstr ""
+
 #: tmainform.caption
 msgid "DebtControl"
 msgstr "DebtControl"
+
+#: tmainform.clients.caption
+msgid "Clients"
+msgstr ""
+
+#: tmainform.clientsgrid.columns[0].title.caption
+msgctxt "tmainform.clientsgrid.columns[0].title.caption"
+msgid "No"
+msgstr ""
+
+#: tmainform.clientsgrid.columns[1].title.caption
+msgctxt "tmainform.clientsgrid.columns[1].title.caption"
+msgid "Last Name"
+msgstr ""
+
+#: tmainform.clientsgrid.columns[2].title.caption
+msgctxt "tmainform.clientsgrid.columns[2].title.caption"
+msgid "First Name"
+msgstr ""
+
+#: tmainform.clientsgrid.columns[3].title.caption
+msgctxt "tmainform.clientsgrid.columns[3].title.caption"
+msgid "Middle Name"
+msgstr ""
+
+#: tmainform.clientsgrid.columns[4].title.caption
+msgid "Debt Limit"
+msgstr ""
+
+#: tmainform.debts.caption
+msgid "Debts"
+msgstr ""
+
+#: tmainform.debtsgrid.columns[0].title.caption
+msgctxt "tmainform.debtsgrid.columns[0].title.caption"
+msgid "No"
+msgstr ""
+
+#: tmainform.debtsgrid.columns[1].title.caption
+msgctxt "tmainform.debtsgrid.columns[1].title.caption"
+msgid "Last Name"
+msgstr ""
+
+#: tmainform.debtsgrid.columns[2].title.caption
+msgctxt "tmainform.debtsgrid.columns[2].title.caption"
+msgid "First Name"
+msgstr ""
+
+#: tmainform.debtsgrid.columns[3].title.caption
+msgctxt "tmainform.debtsgrid.columns[3].title.caption"
+msgid "Middle Name"
+msgstr ""
+
+#: tmainform.debtsgrid.columns[4].title.caption
+msgid "Debt"
+msgstr ""
+
+#: tmainform.debtsgrid.columns[5].title.caption
+msgid "Deadline"
+msgstr ""
 
 #: tmainform.menuitem1.caption
 msgid "Settings"
@@ -23,4 +87,12 @@ msgstr "Settings"
 #: tmainform.menuitem2.caption
 msgid "MenuItem2"
 msgstr "MenuItem2"
+
+#: tmainform.removedebtor.caption
+msgid "RemoveDebtor"
+msgstr ""
+
+#: tmainform.toolbar.caption
+msgid "ToolBar"
+msgstr ""
 

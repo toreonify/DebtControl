@@ -10,12 +10,18 @@ uses
   athreads,
   {$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  LazLogger,  // Enable logging functionality
+  LazLogger,
   Forms, Main, Database;
 
 {$R *.res}
 
+var
+  Logger : TLazLogger;
+
 begin
+  // Enable logging functionality
+
+
   RequireDerivedFormResource:=True;
   Application.Scaled:=True;
   Application.Initialize;

@@ -34,7 +34,7 @@
         <PackageName Value="LCL"/>
       </Item1>
     </RequiredPackages>
-    <Units Count="2">
+    <Units Count="3">
       <Unit0>
         <Filename Value="DebtControl.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -47,6 +47,11 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Main"/>
       </Unit1>
+      <Unit2>
+        <Filename Value="database.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Database"/>
+      </Unit2>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
