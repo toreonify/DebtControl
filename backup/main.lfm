@@ -1,7 +1,7 @@
 object MainForm: TMainForm
-  Left = 689
+  Left = 478
   Height = 600
-  Top = 292
+  Top = 142
   Width = 800
   Caption = 'DebtControl'
   ClientHeight = 600
@@ -220,7 +220,14 @@ object MainForm: TMainForm
     Connected = False
     LoginPrompt = False
     KeepConnection = False
+    Transaction = SQLTransaction
     left = 240
+    top = 520
+  end
+  object SQLTransaction: TSQLTransaction
+    Active = False
+    Database = SQLiteConnection
+    left = 360
     top = 520
   end
 end

@@ -5,10 +5,9 @@ unit Main;
 interface
 
 uses
-  Database,
-  LazLogger,
+  Database, LazLoggerBase, baseunix,
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, DBGrids, Menus,
-  ComCtrls, DefaultTranslator, LCLTranslator, sqlite3conn;
+  ComCtrls, DefaultTranslator, LCLTranslator, sqlite3conn, sqldb;
 
 type
 
@@ -18,6 +17,7 @@ type
     ClientsGrid: TDBGrid;
     DebtsGrid: TDBGrid;
     SQLiteConnection: TSQLite3Connection;
+    SQLTransaction: TSQLTransaction;
     Tables: TPageControl;
     Debts: TTabSheet;
     Clients: TTabSheet;
@@ -46,9 +46,49 @@ implementation
 { TMainForm }
 
 procedure TMainForm.FormCreate(Sender: TObject);
+var
+  ConfigDirectory : string;
 begin
+     DebugLn('Started');
+
+     // Find SQLite library
+     {$IFDEF UNIX}  // Linux
+        {$IFNDEF DARWIN}
+          SQLiteDefaultLibrary := 'libsqlite3.so';
+        {$ENDIF}
+        {$IFDEF DARWIN}
+          SQLiteLibraryName := '/usr/lib/libsqlite3.dylib';
+        {$ENDIF}
+     {$ENDIF}
+
+     {$IFDEF WINDOWS} // Windows
+       SQLiteDefaultLibrary := 'sqlite3.dll';
+     {$ENDIF}
+
+     // Check database file
+     ConfigDirectory := GetAppConfigDir(false);
+     DebugLn(ConfigDirectory);
+
+     if not DirectoryExists(ConfigDirectory) then
+     begin
+        try
+           MkDir(ConfigDirectory);
+        except
+           ShowMessage('Cannot create configuration directory: ' + ConfigDirectory);
+           exit;
+        end;
+     end;
+
+     if FileExists(Connection.DatabaseName) then
+       if fpAccess(ConfigDirectory + 'db.sqlite', W_OK) <> 0 then
+       begin
+          ShowMessage('Cannot write to database file: ' + ConfigDirectory + 'db.sqlite');
+          exit;
+       end;
+
      // Open existing database or automatically create new
-     OpenDatabase;
+     SQLiteConnection.DatabaseName := ConfigDirectory + 'db.sqlite';
+     OpenDatabase(SQLiteConnection);
 end;
 
 end.
