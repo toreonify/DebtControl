@@ -28,4 +28,3 @@ jobs:
           lazarus-version: "2.0.12"
           include-packages: ""
       - run: lazbuild DebtControl.lpi
-      - run: DebtControl
