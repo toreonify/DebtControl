@@ -7,7 +7,7 @@ interface
 uses
   Database, LazLoggerBase, baseunix,
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, DBGrids, Menus,
-  ComCtrls, DefaultTranslator, LCLTranslator, sqlite3conn, sqldb;
+  ComCtrls, DefaultTranslator, LCLTranslator, sqlite3conn, sqldb, sqldblib;
 
 type
 
@@ -16,6 +16,7 @@ type
   TMainForm = class(TForm)
     ClientsGrid: TDBGrid;
     DebtsGrid: TDBGrid;
+    SQLDBLibraryLoader: TSQLDBLibraryLoader;
     SQLiteConnection: TSQLite3Connection;
     SQLTransaction: TSQLTransaction;
     Tables: TPageControl;
@@ -54,16 +55,19 @@ begin
      // Find SQLite library
      {$IFDEF UNIX}  // Linux
         {$IFNDEF DARWIN}
-          SQLiteDefaultLibrary := 'libsqlite3.so';
+          SQLDBLibraryLoader.LibraryName := 'libsqlite3.so';
         {$ENDIF}
         {$IFDEF DARWIN}
-          SQLiteLibraryName := '/usr/lib/libsqlite3.dylib';
+          SQLDBLibraryLoader.LibraryName := '/usr/lib/libsqlite3.dylib';
         {$ENDIF}
      {$ENDIF}
 
      {$IFDEF WINDOWS} // Windows
-       SQLiteDefaultLibrary := 'sqlite3.dll';
+       SQLDBLibraryLoader.LibraryName := 'sqlite3.dll';
      {$ENDIF}
+
+     SQLDBLibraryLoader.Enabled := true;
+     SQLDBLibraryLoader.LoadLibrary;
 
      // Check database file
      ConfigDirectory := GetAppConfigDir(false);

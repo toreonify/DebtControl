@@ -230,4 +230,10 @@ object MainForm: TMainForm
     left = 360
     top = 520
   end
+  object SQLDBLibraryLoader: TSQLDBLibraryLoader
+    Enabled = False
+    ConnectionType = 'SQLite3'
+    left = 480
+    top = 520
+  end
 end

@@ -7,7 +7,7 @@ interface
 uses
   Database, LazLoggerBase, baseunix,
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, DBGrids, Menus,
-  ComCtrls, DefaultTranslator, LCLTranslator, sqlite3conn, sqldb;
+  ComCtrls, DefaultTranslator, LCLTranslator, sqlite3conn, sqldb, sqldblib;
 
 type
 
@@ -16,6 +16,7 @@ type
   TMainForm = class(TForm)
     ClientsGrid: TDBGrid;
     DebtsGrid: TDBGrid;
+    SQLDBLibraryLoader: TSQLDBLibraryLoader;
     SQLiteConnection: TSQLite3Connection;
     SQLTransaction: TSQLTransaction;
     Tables: TPageControl;
@@ -65,6 +66,9 @@ begin
        SQLiteDefaultLibrary := 'sqlite3.dll';
      {$ENDIF}
 
+     SQLDBLibraryLoader.Enabled := true;
+     SQLDBLibraryLoader.LoadLibrary;
+
      // Check database file
      ConfigDirectory := GetAppConfigDir(false);
      DebugLn(ConfigDirectory);
@@ -79,7 +83,7 @@ begin
         end;
      end;
 
-     if FileExists(Connection.DatabaseName) then
+     if FileExists(SQLiteConnection.DatabaseName) then
        if fpAccess(ConfigDirectory + 'db.sqlite', W_OK) <> 0 then
        begin
           ShowMessage('Cannot write to database file: ' + ConfigDirectory + 'db.sqlite');
