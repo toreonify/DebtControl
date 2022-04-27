@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: ProjectBuild
+name: ProjectBuild-Linux
 
 # Controls when the workflow will run
 on:
@@ -22,9 +22,18 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - uses: actions/checkout@v3
-      - uses: gcarreno/setup-lazarus@v3.0.16
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Prepare build environment
+        uses: gcarreno/setup-lazarus@v3.0.16
         with:
           lazarus-version: "2.0.12"
           include-packages: ""
-      - run: lazbuild DebtControl.lpi
+      - name: Build application
+        run: lazbuild DebtControl.lpi
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: executable
+          path: |
+            DebtControl
