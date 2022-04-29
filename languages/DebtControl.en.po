@@ -12,6 +12,14 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Language: en_US\n"
 
+#: tadddebtmodalform.caption
+msgid "AddDebtModalForm"
+msgstr ""
+
+#: tadddebtmodalform.donebutton.caption
+msgid "Done"
+msgstr ""
+
 #: tmainform.adddebtor.caption
 msgid "AddDebtor"
 msgstr ""

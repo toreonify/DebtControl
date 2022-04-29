@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CONFIG>
   <ProjectOptions>
-    <Version Value="11"/>
+    <Version Value="12"/>
     <General>
+      <Flags>
+        <CompatibilityMode Value="True"/>
+      </Flags>
       <SessionStorage Value="InProjectDir"/>
-      <MainUnit Value="0"/>
       <Title Value="DebtControl"/>
       <Scaled Value="True"/>
       <ResourceType Value="res"/>
@@ -27,17 +29,19 @@
     </PublishOptions>
     <RunParams>
       <FormatVersion Value="2"/>
-      <Modes Count="0"/>
     </RunParams>
-    <RequiredPackages Count="2">
+    <RequiredPackages Count="3">
       <Item1>
-        <PackageName Value="FCL"/>
+        <PackageName Value="MemDSLaz"/>
       </Item1>
       <Item2>
-        <PackageName Value="LCL"/>
+        <PackageName Value="FCL"/>
       </Item2>
+      <Item3>
+        <PackageName Value="LCL"/>
+      </Item3>
     </RequiredPackages>
-    <Units Count="3">
+    <Units Count="4">
       <Unit0>
         <Filename Value="DebtControl.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -55,6 +59,13 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="Database"/>
       </Unit2>
+      <Unit3>
+        <Filename Value="adddebtmodal.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="AddDebtModal"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="addDebtModal"/>
+      </Unit3>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -77,4 +88,7 @@
       </Options>
     </Linking>
   </CompilerOptions>
+  <Debugging>
+    <Exceptions IgnoreAll="True"/>
+  </Debugging>
 </CONFIG>

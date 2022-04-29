@@ -1,0 +1,20 @@
+object AddDebtModalForm: TAddDebtModalForm
+  Left = 374
+  Height = 391
+  Top = 123
+  Width = 538
+  Caption = 'AddDebtModalForm'
+  ClientHeight = 391
+  ClientWidth = 538
+  Position = poMainFormCenter
+  LCLVersion = '2.2.0.4'
+  object DoneButton: TBitBtn
+    Left = 408
+    Height = 30
+    Top = 344
+    Width = 75
+    Caption = 'Done'
+    OnClick = DoneButtonClick
+    TabOrder = 0
+  end
+end

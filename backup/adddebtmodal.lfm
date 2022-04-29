@@ -1,0 +1,9 @@
+object AddDebtModalForm: TAddDebtModalForm
+  Left = 374
+  Height = 391
+  Top = 123
+  Width = 538
+  Caption = 'AddDebtModalForm'
+  Position = poMainFormCenter
+  LCLVersion = '2.2.0.4'
+end

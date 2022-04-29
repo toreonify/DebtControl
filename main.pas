@@ -5,9 +5,9 @@ unit Main;
 interface
 
 uses
-  Database, LazLoggerBase, baseunix,
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, DBGrids, Menus,
-  ComCtrls, DefaultTranslator, LCLTranslator, sqlite3conn, sqldb, sqldblib;
+  Database, LazLoggerBase, baseunix, Classes, SysUtils, Forms, Controls, LCLType,
+  Graphics, Dialogs, DBGrids, Menus, ComCtrls, DefaultTranslator, LCLTranslator,
+  DBCtrls, sqlite3conn, sqldb, sqldblib, db, BufDataset, addDebtModal;
 
 type
 
@@ -15,9 +15,11 @@ type
 
   TMainForm = class(TForm)
     ClientsGrid: TDBGrid;
+    DebtsDataSource: TDataSource;
     DebtsGrid: TDBGrid;
     SQLDBLibraryLoader: TSQLDBLibraryLoader;
     SQLiteConnection: TSQLite3Connection;
+    DebtsQuery: TSQLQuery;
     SQLTransaction: TSQLTransaction;
     Tables: TPageControl;
     Debts: TTabSheet;
@@ -30,7 +32,13 @@ type
     ToolBar: TToolBar;
     AddDebtor: TToolButton;
     RemoveDebtor: TToolButton;
+    procedure AddDebtorClick(Sender: TObject);
+    procedure DebtsGridKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure DebtsQueryAfterPost(DataSet: TDataSet);
+    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
+    procedure RemoveDebtorClick(Sender: TObject);
   private
 
   public
@@ -93,6 +101,47 @@ begin
      // Open existing database or automatically create new
      SQLiteConnection.DatabaseName := ConfigDirectory + 'db.sqlite';
      OpenDatabase(SQLiteConnection);
+
+     // Load data
+     DebtsQuery.Active := true;
+
+     //DebtsGrid.Columns.Items[1].PickList.Clear;
+     //DebtsGrid.Columns.Items[1].PickList.AddStrings(SList);
+end;
+
+procedure TMainForm.RemoveDebtorClick(Sender: TObject);
+begin
+   DebtsQuery.Delete;
+end;
+
+procedure TMainForm.AddDebtorClick(Sender: TObject);
+begin
+   if AddDebtModalForm.ShowModal = 0 then
+   begin
+
+      //DebtsQuery.Append;
+   end;
+end;
+
+procedure TMainForm.DebtsGridKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if Key = VK_RETURN then
+     if DebtsQuery.State in [TDatasetState.dsEdit, TDatasetState.dsInsert] then
+         DebtsQuery.Post;
+end;
+
+procedure TMainForm.DebtsQueryAfterPost(DataSet: TDataSet);
+begin
+  DebtsQuery.ApplyUpdates;
+  SQLTransaction.CommitRetaining;
+end;
+
+procedure TMainForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
+begin
+  DebtsQuery.Close;
+  SQLTransaction.Active:= False;
+  SQLiteConnection.Connected:= False;
 end;
 
 end.
